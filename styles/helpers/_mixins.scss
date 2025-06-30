@@ -1,0 +1,88 @@
+@use 'sass:math';
+@use 'functions' as *; /* Чтобы в рамках текущего файла было можно использовать sass-функции из файла `_functions.scss`*/
+
+
+/* Сначала добавил этот вариант миксина. Но потом этот миксин перенес в _functions.scss, как функцию. А тут, ниже, переделал миксин,
+чтобы он работал с функцией*/
+// @mixin fluid-text($max: 48, $min: 16) {
+//   $maxViewportWidth: 1920;
+//   $minViewportWidth: 390;
+
+//   $maxSize: math.div($max, 16);
+//   $minSize: math.div($min, 16);
+//   $maxWidth: math.div($maxViewportWidth, 16);
+//   $minWidth: math.div($minViewportWidth, 16);
+
+//   $slope: math.div(($maxSize - $minSize), ($maxWidth - $minWidth));
+//   $yAxisIntersection: -$minWidth * $slope + $minSize;
+
+//   font-size: clamp(
+//     #{$minSize * 1rem},
+//     #{$yAxisIntersection * 1rem} + #{$slope * 100vw},
+//     #{$maxSize * 1rem}
+//   );
+// }
+
+/* Это все, что должно остаться от миксина тут после создания функции fluid.
+В миксине, вместо функции clamp теперь передается функция fluid*/
+@mixin fluid-text($max: 48, $min: 16) {
+  font-size: fluid($max, $min);
+}
+
+@mixin hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@mixin show {
+    opasity: 1;
+    visibility: visible;
+}
+
+/* 
+Разворачивается в ряд flex-свойств для центрирования элемента
+ */
+@mixin flex-center($isInline: false) {
+  @if $isInline {
+    display: inline-flex;
+  } @else  {
+    display: flex;
+  }
+
+  justify-content: center;
+  align-items: center;
+}
+
+/* 
+Разворачивается в набор CSS-свойств для центрирования черех абсолютное позиционирование 
+*/
+@mixin abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+/* 
+Рисует квадрат с одинаковыми значениями ширины и высоты. 
+aspect-ratio: 1; поменяли на height: $size, так как aspect-ratio 
+не всегда работает так, как ожидаешь. А такой вариант будет ЖБ работать всегда и везде
+*/
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+/* Разворачивает набор свойств, которые используются для визуального сокрытия элемента */
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
