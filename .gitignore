@@ -8,4 +8,4 @@
 npm node_modules/  
 
 # папка сборки 
-dist/
+dist/node_modules/
