@@ -7,7 +7,7 @@ body {
     font-family: var(--font-family-base);
     letter-spacing: -0.03em; // letter-spacing. как и большинство параметров шрифта наследуется, поэтому, указазываю его для body и весь остальной контент будет иметь такой же letter-spacing
     color: var(--color-gray-50);
-    background-color: var(--color-dark);
+    background-color: var(--color-dark-08);
 }
 
 h1, .h1,
@@ -92,4 +92,18 @@ a {
 :focus-visible {
     outline: rem(2) dashed var(--color-light);
     outline-offset: rem(4);
+}
+
+a,
+button {
+    &[aria-label] {
+        position: relative;
+
+        &::before {
+            @include abs-center;
+            @include square(rem(44));
+
+            content: '';
+        }
+    }
 }

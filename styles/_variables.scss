@@ -3,6 +3,7 @@
 :root {
     --color-light: #FFFFFF;
 
+    --color-dark-08: #141414;
     --color-dark-10: #1A1A1A;
     --color-dark-15: #262626;
     --color-dark-20: #333333;
@@ -13,6 +14,8 @@
 
     --color-accent: #FFD11A;
     --color-red: #FF5500;
+
+    --border: #{rem(1)} solid var(--color-dark-15);
 
     --font-family-base: 'Inter', sans-serif;
     --font-family-accent: 'Kumbh Sans', sans-serif;
