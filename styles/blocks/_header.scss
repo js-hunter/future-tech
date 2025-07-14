@@ -1,6 +1,20 @@
 @use '../helpers' as *;
 
 .header {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    animation-name: scrolling-header; // имя анимации
+    animation-fill-mode: both; // Для остановки анимации по ее завершению на последнем и нашем единственном кадре
+    animation-timeline: scroll(); // Новое CSS-свойство, в значении которого новая CSS-функция
+    animation-range: rem(100) rem(200); // Анимация начнет выполняться, когда страница проскроллится на 100px. И будет плавно проявляться со 100 до 200px скроллинга
+
+    @keyframes scrolling-header {
+        to {
+            box-shadow: 0 0 1rem 0 var(--color-dark-40);
+        }
+    }
+
     &__promo {
         padding-block: rem(20);
         text-align: center;
