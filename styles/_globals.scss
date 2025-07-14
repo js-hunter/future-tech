@@ -10,10 +10,16 @@ html {
 body {
     @include fluid-text(18, 14);
 
+    display: flex;
+    flex-direction: column;
     font-family: var(--font-family-base);
     letter-spacing: -0.03em; // letter-spacing. как и большинство параметров шрифта наследуется, поэтому, указазываю его для body и весь остальной контент будет иметь такой же letter-spacing
     color: var(--color-gray-50);
     background-color: var(--color-dark-08);
+}
+
+main {
+    flex-grow: 1;
 }
 
 h1, .h1,
